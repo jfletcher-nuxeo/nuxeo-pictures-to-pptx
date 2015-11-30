@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: docx4jPicturesToPPTX
+Bundle-Name: docx4jPicturesToPPTX
+Bundle-Version: 1.0.qualifier
+Bundle-ClassPath: .
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ManifestVersion: 2
+Bundle-Vendor: Nuxeo
+Nuxeo-Component: OSGI-INF/extensions/org.nuxeo.sample.operation.Pictur
+ eToPPTX.xml
+
