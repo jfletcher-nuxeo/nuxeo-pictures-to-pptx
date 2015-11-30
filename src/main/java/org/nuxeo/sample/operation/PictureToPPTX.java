@@ -20,7 +20,7 @@ import org.nuxeo.ecm.core.api.NuxeoException;
 /**
  * @author jfletcher
  */
-@Operation(id = PictureToPPTX.ID, category = Constants.CAT_CONVERSION, label = "PictureToPPTX", description = "")
+@Operation(id = PictureToPPTX.ID, category = Constants.CAT_CONVERSION, label = "Picture To PPTX", description = "Convert a list of pictures to Powerpoint presentation.")
 public class PictureToPPTX {
 
 	public static final String ID = "PictureToPPTX";
