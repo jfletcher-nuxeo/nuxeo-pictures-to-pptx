@@ -35,19 +35,19 @@ public class PictureToPPTXOperation {
 
 	@OperationMethod(collector = BlobCollector.class)
 	public Blob run(DocumentModel input) throws NuxeoException {
+
+		Blob outputBlob = null;
+
 		if (!(PICTURE_TYPE.equals(input.getType()))) {
 			throw new NuxeoException("Operation works only with "
 					+ PICTURE_TYPE + " document type.");
 		}
 
-		PictureToPPTX myTest = new PictureToPPTX();
-
-		Blob outputBlob = null;
-
 		try {
+			PictureToPPTX myTest = new PictureToPPTX();
 			outputBlob = myTest.convert(input);
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new NuxeoException(e.getMessage());
 		}
 
 		return outputBlob;
