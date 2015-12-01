@@ -4,6 +4,8 @@
 
 package org.nuxeo.sample.operation;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.nuxeo.ecm.automation.core.Constants;
 import org.nuxeo.ecm.automation.core.annotations.Context;
 import org.nuxeo.ecm.automation.core.annotations.Operation;
@@ -25,6 +27,8 @@ import org.pptx4j.samples.InsertPicture;
  */
 @Operation(id = PictureToPPTXOperation.ID, category = Constants.CAT_CONVERSION, label = "Picture To PPTX", description = "Convert a list of Pictures to Powerpoint presentation.")
 public class PictureToPPTXOperation {
+
+    public static final Log log = LogFactory.getLog(PictureToPPTXOperation.class);
 
 	public static final String ID = "PictureToPPTX";
 	public static final String PICTURE_TYPE = "Picture";

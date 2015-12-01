@@ -4,6 +4,8 @@ import java.io.File;
 
 import javax.xml.bind.JAXBException;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.docx4j.openpackaging.packages.PresentationMLPackage;
 import org.docx4j.openpackaging.parts.PartName;
 import org.docx4j.openpackaging.parts.PresentationML.MainPresentationPart;
@@ -14,6 +16,10 @@ import org.docx4j.relationships.Relationship;
 import org.nuxeo.ecm.core.api.Blob;
 import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.impl.blob.FileBlob;
+import org.nuxeo.ecm.core.api.model.Property;
+import org.nuxeo.ecm.platform.picture.api.PictureView;
+import org.nuxeo.ecm.platform.picture.api.adapters.MultiviewPicture;
+import org.nuxeo.sample.operation.PictureToPPTXOperation;
 import org.pptx4j.jaxb.Context;
 import org.pptx4j.pml.Pic;
 
@@ -22,7 +28,29 @@ import org.pptx4j.pml.Pic;
  */
 public class PictureToPPTX {
 
+	public static final Log log = LogFactory
+			.getLog(PictureToPPTXOperation.class);
+
+	private static final String TITLE_MEDIUM = "Medium";
+	private static final int PIXEL_TO_EMU_MULTIPLIER = 12700;
+
+	private int pictureWidth = 0;
+	private int pictureHeight = 0;
+	private Blob pictureBlob = null;
+	private String pictureTitle = null;
+
 	public Blob convert(DocumentModel input) throws Exception {
+
+		MultiviewPicture multiviewPicture = input
+				.getAdapter(MultiviewPicture.class);
+		PictureView mediumView = multiviewPicture.getView(TITLE_MEDIUM);
+
+		pictureWidth = mediumView.getWidth();
+		pictureHeight = mediumView.getHeight();
+		pictureBlob = mediumView.getBlob();
+		pictureTitle = input.getTitle();
+
+		File imageFile = pictureBlob.getFile();
 
 		// Where will we save our new .pptx?
 		String outputfilepath = "/Users/jfletcher/Nuxeo/Projects/prospects/Fox/test/pptx-picture.pptx";
@@ -50,7 +78,7 @@ public class PictureToPPTX {
 		// Add image part
 		File file = new File("/Users/jfletcher/Documents/import/bg-img-1.jpg");
 		BinaryPartAbstractImage imagePart = BinaryPartAbstractImage
-				.createImagePart(presentationMLPackage, slidePart, file);
+				.createImagePart(presentationMLPackage, slidePart, imageFile);
 
 		// Add p:pic to slide
 		slidePart.getJaxbElement().getCSld().getSpTree()
@@ -77,19 +105,19 @@ public class PictureToPPTX {
 		return outputFileBlob;
 	}
 
-	private static Object createPicture(String relId) throws JAXBException {
+	protected Object createPicture(String relId) throws JAXBException {
 
 		// Create p:pic
 		java.util.HashMap<String, String> mappings = new java.util.HashMap<String, String>();
 
 		mappings.put("id1", "4");
-		mappings.put("name", "Picture 3");
-		mappings.put("descr", "bg-img-1.jpg");
+		mappings.put("name", pictureTitle);
+		mappings.put("descr", pictureTitle);
 		mappings.put("rEmbedId", relId);
 		mappings.put("offx", Long.toString(1179576));
 		mappings.put("offy", Long.toString(1527048));
-		mappings.put("extcx", Long.toString(7493000));
-		mappings.put("extcy", Long.toString(3810000));
+		mappings.put("extcx", Long.toString(pictureWidth*PIXEL_TO_EMU_MULTIPLIER));
+		mappings.put("extcy", Long.toString(pictureHeight*PIXEL_TO_EMU_MULTIPLIER));
 
 		return org.docx4j.XmlUtils.unmarshallFromTemplate(SAMPLE_PICTURE,
 				mappings, Context.jcPML, Pic.class);

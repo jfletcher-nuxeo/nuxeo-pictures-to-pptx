@@ -2,7 +2,7 @@
 
   <extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent"
     point="operations" >
-      <operation class="org.nuxeo.sample.operation.PictureToPPTX" />
+      <operation class="org.nuxeo.sample.operation.PictureToPPTXOperation" />
    </extension>
     
 </component>
