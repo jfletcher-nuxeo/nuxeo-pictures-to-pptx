@@ -1,4 +1,4 @@
-<component name="org.nuxeo.sample.operation.PictureToPPTX">
+<component name="org.nuxeo.sample.operation.PictureToPPTXOperation">
 
   <extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent"
     point="operations" >
