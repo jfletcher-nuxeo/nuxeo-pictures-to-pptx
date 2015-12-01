@@ -33,6 +33,8 @@ public class PictureToPPTX {
 
 	private static final String TITLE_MEDIUM = "Medium";
 	private static final int PIXEL_TO_EMU_MULTIPLIER = 12700;
+	private static final int PRESENTATION_WIDTH_EMU = 9902952; // 10.83 in
+	private static final int PRESENTATION_HEIGHT_EMU = 6858000; // 7.5 in
 
 	private int pictureWidth = 0;
 	private int pictureHeight = 0;
@@ -114,10 +116,18 @@ public class PictureToPPTX {
 		mappings.put("name", pictureTitle);
 		mappings.put("descr", pictureTitle);
 		mappings.put("rEmbedId", relId);
-		mappings.put("offx", Long.toString(1179576));
-		mappings.put("offy", Long.toString(1527048));
-		mappings.put("extcx", Long.toString(pictureWidth*PIXEL_TO_EMU_MULTIPLIER));
-		mappings.put("extcy", Long.toString(pictureHeight*PIXEL_TO_EMU_MULTIPLIER));
+		mappings.put(
+				"offx",
+				Long.toString((PRESENTATION_WIDTH_EMU / 2 - pictureWidth
+						* PIXEL_TO_EMU_MULTIPLIER / 2)));
+		mappings.put(
+				"offy",
+				Long.toString((PRESENTATION_HEIGHT_EMU / 2 - pictureHeight
+						* PIXEL_TO_EMU_MULTIPLIER / 2)));
+		mappings.put("extcx",
+				Long.toString(pictureWidth * PIXEL_TO_EMU_MULTIPLIER));
+		mappings.put("extcy",
+				Long.toString(pictureHeight * PIXEL_TO_EMU_MULTIPLIER));
 
 		return org.docx4j.XmlUtils.unmarshallFromTemplate(SAMPLE_PICTURE,
 				mappings, Context.jcPML, Pic.class);
