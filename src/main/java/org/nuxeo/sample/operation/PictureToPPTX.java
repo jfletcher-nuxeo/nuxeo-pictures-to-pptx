@@ -35,12 +35,12 @@ public class PictureToPPTX {
 					+ PICTURE_TYPE + " document type.");
 		}
 
-		InsertPicture myTest = new InsertPicture();
+		PictureToPPTX myTest = new PictureToPPTX();
 
 		FileBlob outputFileBlob = null;
 		
 		try {
-			outputFileBlob = myTest.run();
+			outputFileBlob = myTest.run(input);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
