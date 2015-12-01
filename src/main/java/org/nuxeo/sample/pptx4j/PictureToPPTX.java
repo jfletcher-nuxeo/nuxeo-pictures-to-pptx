@@ -41,6 +41,8 @@ public class PictureToPPTX {
 	private Blob pictureBlob = null;
 	private String pictureTitle = null;
 
+	private int slideCount = 0;
+
 	public Blob convert(DocumentModel input) throws Exception {
 
 		MultiviewPicture multiviewPicture = input
@@ -53,6 +55,8 @@ public class PictureToPPTX {
 		pictureTitle = input.getTitle();
 
 		File imageFile = pictureBlob.getFile();
+
+		slideCount++;
 
 		// Where will we save our new .pptx?
 		String outputfilepath = "/Users/jfletcher/Nuxeo/Projects/prospects/Fox/test/pptx-picture.pptx";
@@ -87,14 +91,6 @@ public class PictureToPPTX {
 				.getSpOrGrpSpOrGraphicFrame()
 				.add(createPicture(imagePart.getSourceRelationship().getId()));
 
-		// Do it again on another slide
-		SlidePart slidePart2 = presentationMLPackage.createSlidePart(pp,
-				layoutPart, new PartName("/ppt/slides/slide2.xml"));
-		Relationship rel = slidePart2.addTargetPart(imagePart);
-
-		slidePart2.getJaxbElement().getCSld().getSpTree()
-				.getSpOrGrpSpOrGraphicFrame().add(createPicture(rel.getId()));
-
 		File outputFile = new java.io.File(outputfilepath);
 
 		// All done: save it
@@ -112,7 +108,7 @@ public class PictureToPPTX {
 		// Create p:pic
 		java.util.HashMap<String, String> mappings = new java.util.HashMap<String, String>();
 
-		mappings.put("id1", "4");
+		mappings.put("id1", Long.toString(slideCount));
 		mappings.put("name", pictureTitle);
 		mappings.put("descr", pictureTitle);
 		mappings.put("rEmbedId", relId);
