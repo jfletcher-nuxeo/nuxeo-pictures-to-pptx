@@ -11,6 +11,7 @@ import org.docx4j.openpackaging.parts.PresentationML.SlideLayoutPart;
 import org.docx4j.openpackaging.parts.PresentationML.SlidePart;
 import org.docx4j.openpackaging.parts.WordprocessingML.BinaryPartAbstractImage;
 import org.docx4j.relationships.Relationship;
+import org.nuxeo.ecm.core.api.Blob;
 import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.impl.blob.FileBlob;
 import org.pptx4j.jaxb.Context;
@@ -21,7 +22,7 @@ import org.pptx4j.pml.Pic;
  */
 public class PictureToPPTX {
 	
-	public FileBlob run(DocumentModel input) throws Exception {
+	public Blob run(DocumentModel input) throws Exception {
 
 		// Where will we save our new .pptx?
 		String outputfilepath = "/Users/jfletcher/Nuxeo/Projects/prospects/Fox/test/pptx-picture.pptx";

@@ -22,7 +22,7 @@ import org.pptx4j.samples.InsertPicture;
 /**
  * @author jfletcher
  */
-@Operation(id = PictureToPPTX.ID, category = Constants.CAT_CONVERSION, label = "Picture To PPTX", description = "Convert a list of pictures to Powerpoint presentation.")
+@Operation(id = PictureToPPTX.ID, category = Constants.CAT_CONVERSION, label = "Picture To PPTX", description = "Convert a list of Pictures to Powerpoint presentation.")
 public class PictureToPPTX {
 
 	public static final String ID = "PictureToPPTX";
@@ -37,7 +37,7 @@ public class PictureToPPTX {
 
 		PictureToPPTX myTest = new PictureToPPTX();
 
-		FileBlob outputFileBlob = null;
+		Blob outputFileBlob = null;
 		
 		try {
 			outputFileBlob = myTest.run(input);
