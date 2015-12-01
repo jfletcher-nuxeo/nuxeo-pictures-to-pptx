@@ -37,15 +37,15 @@ public class PictureToPPTX {
 
 		PictureToPPTX myTest = new PictureToPPTX();
 
-		Blob outputFileBlob = null;
+		Blob outputBlob = null;
 		
 		try {
-			outputFileBlob = myTest.run(input);
+			outputBlob = myTest.run(input);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return outputFileBlob;
+		return outputBlob;
 	}
 
 }
