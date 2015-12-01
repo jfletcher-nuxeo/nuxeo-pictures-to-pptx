@@ -41,7 +41,7 @@ public class PictureToPPTXOperation {
 		Blob outputBlob = null;
 
 		try {
-			outputBlob = myTest.run(input);
+			outputBlob = myTest.convert(input);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

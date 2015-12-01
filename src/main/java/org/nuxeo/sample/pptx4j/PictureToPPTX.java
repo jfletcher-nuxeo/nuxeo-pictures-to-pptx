@@ -22,7 +22,7 @@ import org.pptx4j.pml.Pic;
  */
 public class PictureToPPTX {
 
-	public Blob run(DocumentModel input) throws Exception {
+	public Blob convert(DocumentModel input) throws Exception {
 
 		// Where will we save our new .pptx?
 		String outputfilepath = "/Users/jfletcher/Nuxeo/Projects/prospects/Fox/test/pptx-picture.pptx";
