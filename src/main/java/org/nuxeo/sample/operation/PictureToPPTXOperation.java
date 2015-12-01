@@ -18,9 +18,7 @@ import org.nuxeo.ecm.core.api.CoreSession;
 import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.DocumentRef;
 import org.nuxeo.ecm.core.api.NuxeoException;
-import org.nuxeo.ecm.core.api.impl.blob.FileBlob;
 import org.nuxeo.sample.pptx4j.PictureToPPTX;
-import org.pptx4j.samples.InsertPicture;
 
 /**
  * @author jfletcher
