@@ -39,7 +39,7 @@ public class PictureToPPTXOperation {
 		PictureToPPTX myTest = new PictureToPPTX();
 
 		Blob outputBlob = null;
-		
+
 		try {
 			outputBlob = myTest.run(input);
 		} catch (Exception e) {
