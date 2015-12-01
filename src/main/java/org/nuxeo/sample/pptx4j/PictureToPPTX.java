@@ -159,10 +159,9 @@ public class PictureToPPTX {
 		// OK, now we can create a slide
 		SlidePart slidePart = PresentationMLPackage.createSlidePart(
 				mainPresentationPart, layoutPart, new PartName(
-						"/ppt/slides/slide1.xml"));
+						"/ppt/slides/slide"+slideCount+".xml"));
 
 		// Add image part
-		File file = new File("/Users/jfletcher/Documents/import/bg-img-1.jpg");
 		BinaryPartAbstractImage imagePart = BinaryPartAbstractImage
 				.createImagePart(presentationMLPackage, slidePart, imageFile);
 
