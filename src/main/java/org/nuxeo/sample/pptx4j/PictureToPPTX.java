@@ -43,6 +43,28 @@ public class PictureToPPTX {
 
 	private int slideCount = 0;
 
+	private PresentationMLPackage presentationMLPackage;
+	private MainPresentationPart mainPresentationPart;
+	private SlideLayoutPart layoutPart;
+	
+	// Where will we save our new .pptx?
+	private String outputfilepath = "/Users/jfletcher/Nuxeo/Projects/prospects/Fox/test/pptx-picture.pptx";
+
+	public PictureToPPTX() throws Exception {
+		presentationMLPackage = PresentationMLPackage
+				.createPackage();
+		// Need references to these parts to create a slide
+		// Please note that these parts *already exist* - they are
+		// created by createPackage() above. See that method
+		// for instruction on how to create and add a part.
+		mainPresentationPart = (MainPresentationPart) presentationMLPackage
+				.getParts().getParts()
+				.get(new PartName("/ppt/presentation.xml"));
+		layoutPart = (SlideLayoutPart) presentationMLPackage
+				.getParts().getParts()
+				.get(new PartName("/ppt/slideLayouts/slideLayout1.xml"));
+	}
+
 	public Blob convert(DocumentModel input) throws Exception {
 
 		MultiviewPicture multiviewPicture = input
@@ -58,27 +80,8 @@ public class PictureToPPTX {
 
 		slideCount++;
 
-		// Where will we save our new .pptx?
-		String outputfilepath = "/Users/jfletcher/Nuxeo/Projects/prospects/Fox/test/pptx-picture.pptx";
-
-		// Create skeletal package, including a MainPresentationPart and a
-		// SlideLayoutPart
-		PresentationMLPackage presentationMLPackage = PresentationMLPackage
-				.createPackage();
-
-		// Need references to these parts to create a slide
-		// Please note that these parts *already exist* - they are
-		// created by createPackage() above. See that method
-		// for instruction on how to create and add a part.
-		MainPresentationPart pp = (MainPresentationPart) presentationMLPackage
-				.getParts().getParts()
-				.get(new PartName("/ppt/presentation.xml"));
-		SlideLayoutPart layoutPart = (SlideLayoutPart) presentationMLPackage
-				.getParts().getParts()
-				.get(new PartName("/ppt/slideLayouts/slideLayout1.xml"));
-
 		// OK, now we can create a slide
-		SlidePart slidePart = PresentationMLPackage.createSlidePart(pp,
+		SlidePart slidePart = PresentationMLPackage.createSlidePart(mainPresentationPart,
 				layoutPart, new PartName("/ppt/slides/slide1.xml"));
 
 		// Add image part
@@ -153,4 +156,5 @@ public class PictureToPPTX {
 			+ "<a:avLst/>"
 			+ "</a:prstGeom>"
 			+ "</p:spPr>" + "</p:pic>";
+
 }
