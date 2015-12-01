@@ -16,6 +16,8 @@ import org.nuxeo.ecm.core.api.CoreSession;
 import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.DocumentRef;
 import org.nuxeo.ecm.core.api.NuxeoException;
+import org.nuxeo.ecm.core.api.impl.blob.FileBlob;
+import org.pptx4j.samples.InsertPicture;
 
 /**
  * @author jfletcher
@@ -33,7 +35,17 @@ public class PictureToPPTX {
 					+ PICTURE_TYPE + " document type.");
 		}
 
-		return null;
+		InsertPicture myTest = new InsertPicture();
+
+		FileBlob outputFileBlob = null;
+		
+		try {
+			outputFileBlob = myTest.run();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return outputFileBlob;
 	}
 
 }
