@@ -4,6 +4,8 @@
 
 package org.nuxeo.sample.operation;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.nuxeo.ecm.automation.core.Constants;
 import org.nuxeo.ecm.automation.core.annotations.Context;
 import org.nuxeo.ecm.automation.core.annotations.Operation;
@@ -17,13 +19,16 @@ import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.DocumentRef;
 import org.nuxeo.ecm.core.api.NuxeoException;
 import org.nuxeo.ecm.core.api.impl.blob.FileBlob;
+import org.nuxeo.sample.pptx4j.PictureToPPTX;
 import org.pptx4j.samples.InsertPicture;
 
 /**
  * @author jfletcher
  */
-@Operation(id = PictureToPPTX.ID, category = Constants.CAT_CONVERSION, label = "Picture To PPTX", description = "Convert a list of pictures to Powerpoint presentation.")
-public class PictureToPPTX {
+@Operation(id = PictureToPPTXOperation.ID, category = Constants.CAT_CONVERSION, label = "Picture To PPTX", description = "Convert a list of Pictures to Powerpoint presentation.")
+public class PictureToPPTXOperation {
+
+    public static final Log log = LogFactory.getLog(PictureToPPTXOperation.class);
 
 	public static final String ID = "PictureToPPTX";
 	public static final String PICTURE_TYPE = "Picture";
@@ -35,17 +40,17 @@ public class PictureToPPTX {
 					+ PICTURE_TYPE + " document type.");
 		}
 
-		InsertPicture myTest = new InsertPicture();
+		PictureToPPTX myTest = new PictureToPPTX();
 
-		FileBlob outputFileBlob = null;
-		
+		Blob outputBlob = null;
+
 		try {
-			outputFileBlob = myTest.run();
+			outputBlob = myTest.convert(input);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return outputFileBlob;
+		return outputBlob;
 	}
 
 }
