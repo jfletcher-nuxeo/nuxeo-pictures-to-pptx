@@ -99,7 +99,7 @@ public class PictureToPPTX {
 
 		FileBlob outputFileBlob = new FileBlob(outputFile);
 
-		System.out.println("\n\n done .. saved " + outputfilepath);
+		log.warn("done .. saved " + outputfilepath);
 
 		return outputFileBlob;
 	}
