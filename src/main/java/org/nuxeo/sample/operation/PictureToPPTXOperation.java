@@ -45,11 +45,10 @@ public class PictureToPPTXOperation {
 
 	public static final String ID = "PictureToPPTX";
 
+    @OperationMethod
 	public Blob run(DocumentModelList input) throws NuxeoException {
 
 		Blob outputBlob = null;
-
-
 
 		try {
 			PictureToPPTX myTest = new PictureToPPTX();
