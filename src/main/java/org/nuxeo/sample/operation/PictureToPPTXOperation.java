@@ -31,7 +31,7 @@ import org.nuxeo.sample.pptx4j.PictureToPPTX;
 /**
  * @author jfletcher
  */
-@Operation(id = PictureToPPTXOperation.ID, category = Constants.CAT_CONVERSION, label = "Picture To PPTX", description = "Convert a list of Pictures to Powerpoint presentation. If <code>targetFileName</code> is not provided, the output filename will be \"nxops-PictureToPPTX-<somenumber>.pptx\".")
+@Operation(id = PictureToPPTXOperation.ID, category = Constants.CAT_CONVERSION, label = "Picture To PPTX", description = "Convert a list of Pictures to Powerpoint presentation. If <code>targetFileName</code> is not provided, the output filename will be \"nxops-PictureToPPTX-&lt;some_number&gt;.pptx\".")
 public class PictureToPPTXOperation {
 
     public static final Log log = LogFactory.getLog(PictureToPPTXOperation.class);
