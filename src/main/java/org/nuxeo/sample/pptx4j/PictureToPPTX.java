@@ -39,7 +39,6 @@ import org.nuxeo.ecm.core.api.impl.blob.FileBlob;
 import org.nuxeo.ecm.platform.picture.api.PictureView;
 import org.nuxeo.ecm.platform.picture.api.adapters.MultiviewPicture;
 import org.nuxeo.runtime.api.Framework;
-import org.nuxeo.sample.operation.PictureToPPTXOperation;
 import org.pptx4j.jaxb.Context;
 import org.pptx4j.pml.Pic;
 
@@ -48,7 +47,7 @@ import org.pptx4j.pml.Pic;
  */
 public class PictureToPPTX {
 
-    public static final Log log = LogFactory.getLog(PictureToPPTXOperation.class);
+    public static final Log log = LogFactory.getLog(PictureToPPTX.class);
 
     private static final String TITLE_MEDIUM = "Medium";
 
