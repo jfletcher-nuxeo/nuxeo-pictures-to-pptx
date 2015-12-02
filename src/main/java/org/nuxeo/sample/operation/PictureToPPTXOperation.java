@@ -45,7 +45,7 @@ public class PictureToPPTXOperation {
     public static final String ID = "PictureToPPTX";
 
     @Param(name = "targetFileName", required = false)
-    protected String targetFileName = "";
+    protected String targetFileName = null;
 
     @OperationMethod
     public Blob run(DocumentModelList documentList) throws NuxeoException {
