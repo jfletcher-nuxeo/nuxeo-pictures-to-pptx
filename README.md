@@ -1,6 +1,6 @@
 # About nuxeo-pictures-to-pptx
 
-Nuxeo plugin with operation `Convert > Picture To PPTX` to convert Pictures to PPTX.
+Nuxeo plugin with operation `Convert > Pictures To PPTX` to convert Pictures to PPTX.
 
 (only Pictures are supported; this means the DAM add-on is required)
 
