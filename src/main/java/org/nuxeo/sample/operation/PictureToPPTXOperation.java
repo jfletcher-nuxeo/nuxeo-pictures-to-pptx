@@ -48,13 +48,13 @@ public class PictureToPPTXOperation {
     protected String targetFileName = "";
 
     @OperationMethod
-    public Blob run(DocumentModelList input) throws NuxeoException {
+    public Blob run(DocumentModelList documentList) throws NuxeoException {
 
         Blob outputBlob = null;
 
         try {
             PictureToPPTX myTest = new PictureToPPTX();
-            myTest.setDocumentList(input);
+            myTest.setDocumentList(documentList);
             outputBlob = myTest.convert();
         } catch (Exception e) {
             throw new NuxeoException(e.getMessage());
