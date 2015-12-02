@@ -37,28 +37,30 @@ import org.nuxeo.sample.pptx4j.PictureToPPTX;
 /**
  * @author jfletcher
  */
-@Operation(id = PictureToPPTXOperation.ID, category = Constants.CAT_CONVERSION, label = "Picture To PPTX", description = "Convert a list of Pictures to Powerpoint presentation.")
+@Operation(id = PictureToPPTXOperation.ID, category = Constants.CAT_CONVERSION, label = "Picture To PPTX", description = "Convert a list of Pictures to Powerpoint presentation. If <code>targetFileName</code> is not provided, the output filename will be \"nxops-PictureToPPTX-<somenumber>.pptx\".")
 public class PictureToPPTXOperation {
 
-	public static final Log log = LogFactory
-			.getLog(PictureToPPTXOperation.class);
+    public static final Log log = LogFactory.getLog(PictureToPPTXOperation.class);
 
-	public static final String ID = "PictureToPPTX";
+    public static final String ID = "PictureToPPTX";
+
+    @Param(name = "targetFileName", required = false)
+    protected String targetFileName = "";
 
     @OperationMethod
-	public Blob run(DocumentModelList input) throws NuxeoException {
+    public Blob run(DocumentModelList input) throws NuxeoException {
 
-		Blob outputBlob = null;
+        Blob outputBlob = null;
 
-		try {
-			PictureToPPTX myTest = new PictureToPPTX();
-			myTest.setDocumentList(input);
-			outputBlob = myTest.convert();
-		} catch (Exception e) {
-			throw new NuxeoException(e.getMessage());
-		}
+        try {
+            PictureToPPTX myTest = new PictureToPPTX();
+            myTest.setDocumentList(input);
+            outputBlob = myTest.convert();
+        } catch (Exception e) {
+            throw new NuxeoException(e.getMessage());
+        }
 
         return outputBlob;
-	}
+    }
 
 }
