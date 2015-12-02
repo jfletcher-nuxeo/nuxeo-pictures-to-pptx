@@ -26,17 +26,17 @@ import org.nuxeo.ecm.automation.core.annotations.Param;
 import org.nuxeo.ecm.core.api.Blob;
 import org.nuxeo.ecm.core.api.DocumentModelList;
 import org.nuxeo.ecm.core.api.NuxeoException;
-import org.nuxeo.sample.pptx4j.PictureToPPTX;
+import org.nuxeo.sample.pptx4j.PicturesToPPTX;
 
 /**
  * @author jfletcher
  */
-@Operation(id = PictureToPPTXOperation.ID, category = Constants.CAT_CONVERSION, label = "Picture To PPTX", description = "Convert a list of Pictures to Powerpoint presentation. If <code>targetFileName</code> is not provided, the output filename will be \"nxops-PictureToPPTX-&lt;some_number&gt;.pptx\".")
-public class PictureToPPTXOperation {
+@Operation(id = PicturesToPPTXOperation.ID, category = Constants.CAT_CONVERSION, label = "Picture To PPTX", description = "Convert a list of Pictures to Powerpoint presentation. If <code>targetFileName</code> is not provided, the output filename will be \"nxops-PicturesToPPTX-&lt;some_number&gt;.pptx\".")
+public class PicturesToPPTXOperation {
 
-    public static final Log log = LogFactory.getLog(PictureToPPTXOperation.class);
+    public static final Log log = LogFactory.getLog(PicturesToPPTXOperation.class);
 
-    public static final String ID = "PictureToPPTX";
+    public static final String ID = "PicturesToPPTX";
 
     @Param(name = "targetFileName", required = false)
     protected String targetFileName = null;
@@ -47,7 +47,7 @@ public class PictureToPPTXOperation {
         Blob outputBlob = null;
 
         try {
-            PictureToPPTX myTest = new PictureToPPTX();
+            PicturesToPPTX myTest = new PicturesToPPTX();
             myTest.setDocumentList(documentList);
             outputBlob = myTest.convert();
         } catch (Exception e) {

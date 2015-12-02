@@ -45,9 +45,9 @@ import org.pptx4j.pml.Pic;
 /**
  * @author jfletcher
  */
-public class PictureToPPTX {
+public class PicturesToPPTX {
 
-    public static final Log log = LogFactory.getLog(PictureToPPTX.class);
+    public static final Log log = LogFactory.getLog(PicturesToPPTX.class);
 
     private static final String TITLE_MEDIUM = "Medium";
 
@@ -83,7 +83,7 @@ public class PictureToPPTX {
      * 
      * @throws Exception
      */
-    public PictureToPPTX() throws Exception {
+    public PicturesToPPTX() throws Exception {
         presentationMLPackage = PresentationMLPackage.createPackage();
         // Need references to these parts to create a slide
         // Please note that these parts *already exist* - they are
