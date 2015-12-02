@@ -131,10 +131,7 @@ public class PictureToPPTX {
         presentationMLPackage.save(outputFile);
 
         // Load the file for Nuxeo.
-        // TODO: add a parameter for the file name.
         FileBlob outputFileBlob = new FileBlob(outputFile);
-
-        log.warn("Saved " + outputFile.getName());
 
         return outputFileBlob;
     }
