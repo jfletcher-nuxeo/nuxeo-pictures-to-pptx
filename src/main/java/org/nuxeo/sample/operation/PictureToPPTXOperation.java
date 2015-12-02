@@ -60,6 +60,10 @@ public class PictureToPPTXOperation {
             throw new NuxeoException(e.getMessage());
         }
 
+        if (targetFileName != null) {
+            outputBlob.setFilename(targetFileName);
+        }
+
         return outputBlob;
     }
 
