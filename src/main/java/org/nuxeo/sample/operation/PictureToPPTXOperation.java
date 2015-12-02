@@ -58,7 +58,7 @@ public class PictureToPPTXOperation {
 			throw new NuxeoException(e.getMessage());
 		}
 
-		return outputBlob;
+        return outputBlob;
 	}
 
 }
